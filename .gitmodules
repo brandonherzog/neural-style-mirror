@@ -1,0 +1,3 @@
+[submodule "chainer-fast-neuralstyle"]
+	path = chainer-fast-neuralstyle
+	url = https://github.com/yusuketomoto/chainer-fast-neuralstyle.git
