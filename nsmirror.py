@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import
 
+from __future__ import print_function, division, absolute_import
+import PyQt5
 import time
 import os
 import sys
 from pydoc import locate
-
+from PyQt5.QtWidgets import *
 import numpy as np
 
 import cv2
+import chainer
+chainer.using_config
 # location for these differ from opencv 2 vs 3
 try: # 2
     CV_CAP_PROP_FRAME_WIDTH = cv2.cv.CV_CAP_PROP_FRAME_WIDTH
@@ -24,8 +27,8 @@ try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except ImportError:
-    from PyQt4.QtGui import *
-    from PyQt4.QtCore import *
+    from PyQt5.QtGui import *
+    from PyQt5.QtCore import *
     Signal = pyqtSignal
     Slot = pyqtSlot
 
@@ -284,7 +287,7 @@ class MainApp(QWidget):
         self.styles = load_styles()
         self.image = QImage(256, 256, QImage.Format_RGB888) # placeholder
         self.freeze = None
-        if isinstance(settings.CAPTURE_HANDLER, basestring):
+        if isinstance(settings.CAPTURE_HANDLER, str):
             self.capture_handler = locate(settings.CAPTURE_HANDLER)
         else:
             self.capture_handler = settings.CAPTURE_HANDLER
@@ -324,7 +327,7 @@ class MainApp(QWidget):
             self.style_changed.emit(self.styles[i])
             view.selected_style = self.styles[i]
 
-        for i in xrange(min(len(self.styles), len(settings.STYLE_SHORTCUTS))):
+        for i in range(min(len(self.styles), len(settings.STYLE_SHORTCUTS))):
             QShortcut(QKeySequence(settings.STYLE_SHORTCUTS[i]), self, lambda x=i: switch_style(x))
 
         self.landscape_view = LandscapeView(self.styles)
