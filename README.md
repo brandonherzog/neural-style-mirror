@@ -3,7 +3,7 @@ A Python-based live webcam demo of real time artistic style transfer using neura
 
 A kiosk demo has been on display at [Booz Allen Hamilton's Innovation Center](http://www.boozallen.com/consulting/strategic-innovation/dcinnovationcenter).
 
-![Sample Screenshot](/images/screenshot.png)
+![Sample Screenshot](/images/image.png)
 *Screenshot in windowed mode.*
 
 # Cloning
